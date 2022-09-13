@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">DreamApp</string>
+    <string name="app_title">DreamApp</string>
+    <string name="app_profile_name">Eugene Busygin</string>
+    <string name="action_refresh">Перезагрузить</string>
+    <string name="title_padding_size">Изменить отступы</string>
+    <string name="title_padding_small">Маленькие</string>
+    <string name="title_padding_medium">Средние</string>
+    <string name="title_padding_big">Большие</string>
+    <string name="title_font_size">Изменить шрифт</string>
+    <string name="title_font_size_small">Маленький</string>
+    <string name="title_font_size_medium">Средний</string>
+    <string name="title_font_size_big">Большой</string>
+    <string name="action_changed_dark_mode">Изменить тему</string>
+    <string name="app_dark_mode">Dark Mode</string>
+</resources>

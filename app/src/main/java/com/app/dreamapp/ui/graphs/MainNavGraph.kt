@@ -74,7 +74,7 @@ fun MainNavGraph(
         ) {
 
             //main navigation
-            mainNavGraph(
+            mainBottomNavGraph(
                 modifier = modifier,
                 navController = navController,
                 scope = scope,
@@ -120,7 +120,7 @@ fun MainNavGraph(
 }
 
 @OptIn(ExperimentalMaterialApi::class)
-fun NavGraphBuilder.mainNavGraph(
+fun NavGraphBuilder.mainBottomNavGraph(
     modifier: Modifier,
     navController: NavHostController,
     scope: CoroutineScope,
@@ -170,7 +170,12 @@ fun NavGraphBuilder.mainNavGraph(
         composable(route = BottomBarScreen.LinkTree.route) {
             LinkTreeScreen(
                 modifier = modifier,
+                scaffoldState = scaffoldState,
+                scope = scope,
                 navController = navController,
+                currentUserState = currentUserState,
+                settingsScreenViewModel = settingsScreenViewModel,
+                settingsScreenViewState = settingsScreenViewState,
             )
         }
 

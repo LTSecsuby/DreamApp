@@ -9,6 +9,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,6 +20,8 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.app.dreamapp.ui.components.DreamAppDefaultButton
+import com.app.dreamapp.ui.screens.ContactChats.ContactChats
+import com.app.dreamapp.ui.screens.ContactsMessages.ContactMessages
 import com.app.dreamapp.ui.theme.DreamAppTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -28,7 +31,7 @@ import kotlinx.coroutines.launch
 fun AddMessageBottomSheet(
     modifier: Modifier,
     onErrorClick: () -> Unit,
-    onDoneClick: () -> Unit,
+    onDoneClick: (ContactMessages) -> Unit,
     onCloseClick: () -> Unit
 ) {
     Surface(
@@ -53,7 +56,7 @@ fun AddMessageBottomSheet(
 
             Row(
                 modifier = Modifier
-                    .padding(start = 16.dp, top = 16.dp, end = 16.dp)
+                    .padding(start = 16.dp, top = 16.dp)
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
@@ -116,7 +119,17 @@ fun AddMessageBottomSheet(
                 backgroundColor = DreamAppTheme.colors.primaryBackground,
                 onClick = {
                     if (message.value.isNotEmpty()) {
-                        onDoneClick()
+                        onDoneClick(
+                            ContactMessages(
+                                id = "ContactMessages:2",
+                                author = ContactChats(
+                                    id = "ContactChats:11",
+                                    name = "Контакт11",
+                                    avatar = Icons.Default.Person
+                                ),
+                                text = message.value
+                            )
+                        )
                     } else {
                         onErrorClick()
                     }

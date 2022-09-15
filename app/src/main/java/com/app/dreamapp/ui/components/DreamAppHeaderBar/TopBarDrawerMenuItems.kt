@@ -4,7 +4,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.app.dreamapp.ui.graphs.DetailsPage
-import com.app.dreamapp.ui.pages.Main.MainRoute
 
 sealed class TopBarDrawerMenuItems(
     var id: String,

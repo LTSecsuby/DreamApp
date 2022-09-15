@@ -55,20 +55,21 @@ sealed class Graph(val route: String) {
     object ROOT : Graph("root_graph")
     object AUTHENTICATION : Graph("auth_graph")
     object MAIN : Graph("main_graph")
-    object CONTACT : Graph("contact_graph")
-    object TIMELINE_ITEM : Graph("timeline_item_graph")
+
+    object MAIN_NAV : Graph("main_nav_graph")
+
     object SETTINGS : Graph("settings_graph")
     object LOGOUT : Graph("logout_graph")
     object ADMIN_PANEL : Graph("admin_panel_graph")
     object ADD_PERSON : Graph("add_person_graph")
     object ACCOUNT : Graph("account_graph")
 
-    fun withArgs(vararg args: String): String {
-        return buildString {
-            append(route)
-            args.forEach { arg ->
-                append("/$arg")
-            }
-        }
-    }
+//    fun withArgs(vararg args: String): String {
+//        return buildString {
+//            append(route)
+//            args.forEach { arg ->
+//                append("/$arg")
+//            }
+//        }
+//    }
 }

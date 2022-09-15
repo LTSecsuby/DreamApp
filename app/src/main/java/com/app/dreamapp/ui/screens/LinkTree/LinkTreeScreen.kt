@@ -8,11 +8,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import com.app.dreamapp.ui.theme.DreamAppTheme
 
 @Composable
 fun LinkTreeScreen(
     modifier: Modifier = Modifier,
+    navController: NavHostController,
 ) {
     Surface(
         modifier = modifier,

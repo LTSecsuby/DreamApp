@@ -4,19 +4,16 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.*
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.app.dreamapp.ui.components.DreamAppDefaultButton
 import com.app.dreamapp.ui.pages.Main.MainScreenViewModel
@@ -26,7 +23,7 @@ import com.app.dreamapp.ui.theme.DreamAppTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-fun NavGraphBuilder.authNavGraph(
+fun NavGraphBuilder.authScreenNavGraph(
     modifier: Modifier,
     navController: NavHostController,
     scaffoldState: ScaffoldState,
@@ -71,10 +68,10 @@ fun NavGraphBuilder.authNavGraph(
                             verticalArrangement = Arrangement.Center,
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            val message = remember {mutableStateOf("")}
+                            val message = remember { mutableStateOf("") }
                             OutlinedTextField(
                                 message.value,
-                                {message.value = it},
+                                { message.value = it },
                                 modifier = Modifier
                                     .padding(start = 16.dp, end = 16.dp)
                                     .fillMaxWidth(),
@@ -82,7 +79,7 @@ fun NavGraphBuilder.authNavGraph(
                                 colors = TextFieldDefaults.outlinedTextFieldColors(
                                     textColor = DreamAppTheme.colors.primaryText,
                                     backgroundColor = DreamAppTheme.colors.secondaryBackground,
-                                    focusedBorderColor= DreamAppTheme.colors.tintColor,
+                                    focusedBorderColor = DreamAppTheme.colors.tintColor,
                                     unfocusedBorderColor = DreamAppTheme.colors.secondaryText,
                                 ),
                                 label = {
@@ -104,7 +101,8 @@ fun NavGraphBuilder.authNavGraph(
                                     onDone = {
                                         if (message.value.isNotEmpty()) {
                                             mainScreenViewModel.setCurrentUserName(message.value)
-                                            navController.popBackStack()
+                                            navController.popBackStack(navController.graph.startDestinationId, true)
+                                            navController.graph.setStartDestination(Graph.MAIN.route)
                                             navController.navigate(Graph.MAIN.route)
                                         } else {
                                             scope.launch {
@@ -121,7 +119,8 @@ fun NavGraphBuilder.authNavGraph(
                                 onClick = {
                                     if (message.value.isNotEmpty()) {
                                         mainScreenViewModel.setCurrentUserName(message.value)
-                                        navController.popBackStack()
+                                        navController.popBackStack(navController.graph.startDestinationId, true)
+                                        navController.graph.setStartDestination(Graph.MAIN.route)
                                         navController.navigate(Graph.MAIN.route)
                                     } else {
                                         scope.launch {
@@ -156,7 +155,7 @@ fun NavGraphBuilder.authNavGraph(
                     ) {
                         Text(
                             text = "Регистрация",
-                            color =  DreamAppTheme.colors.primaryText,
+                            color = DreamAppTheme.colors.primaryText,
                         )
                     }
                 }
@@ -179,7 +178,7 @@ fun NavGraphBuilder.authNavGraph(
                     ) {
                         Text(
                             text = "Забыли пароль?",
-                            color =  DreamAppTheme.colors.primaryText,
+                            color = DreamAppTheme.colors.primaryText,
                         )
                     }
                 }

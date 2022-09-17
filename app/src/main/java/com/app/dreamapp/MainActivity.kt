@@ -45,7 +45,8 @@ fun App() {
         val scope = rememberCoroutineScope()
 
         Surface(
-            color = DreamAppTheme.colors.secondaryBackground,
+            modifier = Modifier,
+            color = DreamAppTheme.colors.primaryBackground,
         ) {
             RootNavigationGraph(
                 modifier = Modifier,

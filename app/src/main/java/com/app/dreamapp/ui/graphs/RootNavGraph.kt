@@ -12,7 +12,7 @@ import com.app.dreamapp.ui.pages.Main.MainScreen
 import com.app.dreamapp.ui.pages.Main.MainScreenViewModel
 import com.app.dreamapp.ui.pages.Settings.SettingsScreenViewModel
 import com.app.dreamapp.ui.pages.Settings.SettingsScreenViewState
-import com.app.dreamapp.ui.theme.SettingsBundle
+import com.app.dreamapp.ui.pages.Splash.SplashScreen
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
@@ -29,21 +29,27 @@ fun RootNavigationGraph(
     NavHost(
         navController = navController,
         route = Graph.ROOT.route,
-        startDestination = Graph.AUTHENTICATION.route
+        startDestination = Graph.SPLASH.route
     ) {
-        authNavGraph(
+        composable(route = Graph.SPLASH.route) {
+            SplashScreen(
+                modifier = modifier,
+                navController = navController,
+            )
+        }
+        authScreenNavGraph(
             modifier = modifier,
             navController = navController,
             scaffoldState = scaffoldState,
             scope = scope,
-            mainScreenViewModel = mainScreenViewModel
+            mainScreenViewModel = mainScreenViewModel,
         )
         composable(route = Graph.MAIN.route) {
             MainScreen(
                 modifier = modifier,
                 scaffoldState = scaffoldState,
-                currentUserState = currentUserState,
                 scope = scope,
+                currentUserState = currentUserState,
                 settingsScreenViewModel = settingsScreenViewModel,
                 settingsScreenViewState = settingsScreenViewState,
             )
@@ -53,9 +59,12 @@ fun RootNavigationGraph(
 
 sealed class Graph(val route: String) {
     object ROOT : Graph("root_graph")
-    object AUTHENTICATION : Graph("auth_graph")
-    object MAIN : Graph("main_graph")
 
+    object SPLASH : Graph("splash_graph")
+
+    object AUTHENTICATION : Graph("auth_graph")
+
+    object MAIN : Graph("main_graph")
     object MAIN_NAV : Graph("main_nav_graph")
 
     object SETTINGS : Graph("settings_graph")

@@ -156,7 +156,7 @@ fun AddContactBottomSheet(
                         onDoneClick(
                             ContactChats(
                                 id = "ContactChats:11",
-                                name = "Точно Женя",
+                                name = title.value,
                                 avatar = Icons.Default.Person,
                             )
                         )

@@ -1,1 +1,1 @@
-# DreamApp
+# DreamApp - simple android app
